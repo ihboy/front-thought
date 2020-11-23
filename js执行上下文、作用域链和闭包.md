@@ -70,7 +70,38 @@ foo() // 2
 <b>this指向的是最后调用它的对象</b>
 
 
+### 闭包
+引入阮一峰的话就是：<b>闭包就是能够读取其他函数内部变量的函数。</b>
+自由变量: 是指在函数中使用的，但既不是函数参数也不是函数的局部变量的变量。
+闭包 = 函数 + 函数能够访问的自由变量
+
+```
+function greet() {
+  let test = 'Hi,';
+  function sayHello(name) {
+    test += name
+    return test;
+  }
+  return sayHello;
+
+}
+
+let gt = greet();
+gt('t1');   // Hi,t1
+gt('t2');   // Hi,t1t2
+```
+上面代码共用同一个变量。
+
+#### 闭包的用途
+  由于可以访问其他函数内部变量的特性, 闭包可以用来模拟私有变量;
+  但由于其上下文已经销毁, 它仍然存在, 所以不能滥用闭包, 否则会造成性能问题;  
+
+
+
+
+
 
 #### 参考
 1.https://github.com/mqyqingfeng/Blog/issues/7
 2.https://www.ruanyifeng.com/blog/2018/06/javascript-this.html
+3.http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
